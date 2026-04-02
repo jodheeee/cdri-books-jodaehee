@@ -1,9 +1,5 @@
 ## CERTICOS BOOKS
 
-카카오 도서 검색 API 기반의 도서 검색
-
-<hr />
-
 ### 실행 방법
 
 ```bash
