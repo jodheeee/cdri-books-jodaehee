@@ -1,1 +1,53 @@
 @import "tailwindcss";
+
+@theme {
+  --color-primary: #4880ee;
+  --color-red: #e84118;
+  --color-gray: #dadada;
+  --color-light-gray: #f2f4f6;
+  --color-white: #ffffff;
+  --color-black: #222222;
+  --color-secondary: #6d7582;
+  --color-subtitle: #8d94a0;
+
+  --font-title1: 700 24px/24px "Noto Sans KR", sans-serif;
+  --font-title2: 700 22px/24px "Noto Sans KR", sans-serif;
+  --font-title3: 700 18px/18px "Noto Sans KR", sans-serif;
+  --font-body1: 500 20px/20px "Noto Sans KR", sans-serif;
+  --font-body2: 500 14px/14px "Noto Sans KR", sans-serif;
+  --font-body2-bold: 700 14px/14px "Noto Sans KR", sans-serif;
+  --font-caption: 500 16px/16px "Noto Sans KR", sans-serif;
+  --font-small: 500 10px/10px "Noto Sans KR", sans-serif;
+}
+
+@utility font-title1 {
+  font: var(--font-title1);
+}
+
+@utility font-title2 {
+  font: var(--font-title2);
+}
+
+@utility font-title3 {
+  font: var(--font-title3);
+}
+
+@utility font-body1 {
+  font: var(--font-body1);
+}
+
+@utility font-body2 {
+  font: var(--font-body2);
+}
+
+@utility font-body2-bold {
+  font: var(--font-body2-bold);
+}
+
+@utility font-caption {
+  font: var(--font-caption);
+}
+
+@utility font-small {
+  font: var(--font-small);
+}
