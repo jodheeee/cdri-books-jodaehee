@@ -1,7 +1,7 @@
 import { Suspense, useState } from "react";
-import searchIcon from "../../icons/search.svg";
-import BookListSkeleton from "../../components/BookListSkeleton";
-import EmptyResult from "../../components/EmptyResult";
+import searchIcon from "@/icons/search.svg";
+import BookListSkeleton from "@/components/BookListSkeleton";
+import EmptyResult from "@/components/EmptyResult";
 import SearchResult from "./modules/components/SearchResult";
 
 export default function SearchPage() {

@@ -1,10 +1,10 @@
 import { useCallback, useEffect } from "react";
 import { useBookSearch } from "../hooks/useBookSearch";
-import { useIntersectionObserver } from "../../../../hooks/useIntersectionObserver";
-import BookList from "../../../../components/BookList";
-import BookListSkeleton from "../../../../components/BookListSkeleton";
-import EmptyResult from "../../../../components/EmptyResult";
-import ScrollTopButton from "../../../../components/ScrollTopButton";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import BookList from "@/components/BookList";
+import BookListSkeleton from "@/components/BookListSkeleton";
+import EmptyResult from "@/components/EmptyResult";
+import ScrollTopButton from "@/components/ScrollTopButton";
 
 interface SearchResultProps {
   query: string;
