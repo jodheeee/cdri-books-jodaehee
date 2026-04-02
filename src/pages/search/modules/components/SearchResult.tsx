@@ -2,7 +2,7 @@ import { useCallback, useEffect } from "react";
 import { useBookSearch } from "../hooks/useBookSearch";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import BookList from "@/components/BookList";
-import BookListSkeleton from "@/components/BookListSkeleton";
+import BookListSkeleton from "@/components/BookList/Skeleton";
 import EmptyResult from "@/components/EmptyResult";
 import ScrollTopButton from "@/components/ScrollTopButton";
 
