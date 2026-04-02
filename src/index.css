@@ -21,6 +21,7 @@
   --font-body3: 500 16px/16px "Noto Sans KR", sans-serif;
   --font-caption: 500 16px/16px "Noto Sans KR", sans-serif;
   --font-small: 500 10px/10px "Noto Sans KR", sans-serif;
+  --font-tiny: 500 12px/12px "Noto Sans KR", sans-serif;
 }
 
 @utility font-title1 {
@@ -57,4 +58,8 @@
 
 @utility font-small {
   font: var(--font-small);
+}
+
+@utility font-tiny {
+  font: var(--font-tiny);
 }
