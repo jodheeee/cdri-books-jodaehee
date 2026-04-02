@@ -1,6 +1,9 @@
 import { useState } from "react";
 import toggleArrowIcon from "@/icons/toggle-arrow.svg";
+import likeOn from "@/icons/like-on.svg";
+import likeOff from "@/icons/like-off.svg";
 import type { BookDocument } from "@/pages/search/modules/queries/interface";
+import { useWishlistStore } from "@/stores/useWishlistStore";
 
 interface BookListProps {
   books: BookDocument[];
@@ -49,21 +52,35 @@ function BookPrice({ book, className = "" }: { book: BookDocument; className?: s
 
 function BookItem({ book }: { book: BookDocument }) {
   const [open, setOpen] = useState(false);
+  const { toggle, isWished } = useWishlistStore();
+  const wished = isWished(book.isbn);
 
   return (
     <div>
       {open ? (
         <div className="relative px-4 pt-[44px] pb-10">
           <div className="flex">
-            <img
-              src={book.thumbnail}
-              alt={book.title}
-              width={210}
-              height={280}
-              loading="lazy"
-              decoding="async"
-              className="w-[210px] h-[280px] object-cover shrink-0"
-            />
+            <div className="relative shrink-0">
+              <img
+                src={book.thumbnail}
+                alt={book.title}
+                width={210}
+                height={280}
+                loading="lazy"
+                decoding="async"
+                className="w-[210px] h-[280px] object-cover"
+              />
+              <button
+                onClick={() => toggle(book)}
+                className="absolute top-3 right-2.5"
+              >
+                <img
+                  src={wished ? likeOn : likeOff}
+                  alt="찜"
+                  className="w-5 h-[17px]"
+                />
+              </button>
+            </div>
             <div className="ml-8 flex-1">
               <div className="flex items-start justify-between">
                 <div className="flex items-baseline gap-4">
@@ -94,15 +111,24 @@ function BookItem({ book }: { book: BookDocument }) {
         </div>
       ) : (
         <div className="flex items-center py-[15px] px-4">
-          <img
-            src={book.thumbnail}
-            alt={book.title}
-            width={48}
-            height={68}
-            loading="lazy"
-            decoding="async"
-            className="w-12 h-[68px] object-cover shrink-0"
-          />
+          <div className="relative shrink-0">
+            <img
+              src={book.thumbnail}
+              alt={book.title}
+              width={48}
+              height={68}
+              loading="lazy"
+              decoding="async"
+              className="w-12 h-[68px] object-cover"
+            />
+            {wished && (
+              <img
+                src={likeOn}
+                alt="찜"
+                className="absolute top-0 right-0 w-3 h-3"
+              />
+            )}
+          </div>
           <div className="flex items-baseline w-[480px] ml-12">
             <p className="font-title3 text-text-primary shrink-0 max-w-[300px] truncate">{book.title}</p>
             <p className="font-body2 text-text-secondary ml-4 truncate">
