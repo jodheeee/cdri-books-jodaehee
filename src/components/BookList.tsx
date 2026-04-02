@@ -12,6 +12,10 @@ function BookItem({ book }: { book: BookDocument }) {
         <img
           src={book.thumbnail}
           alt={book.title}
+          width={48}
+          height={68}
+          loading="lazy"
+          decoding="async"
           className="w-12 h-[68px] object-cover shrink-0"
         />
         <div className="flex items-baseline w-[480px] ml-12">
@@ -37,7 +41,7 @@ function BookItem({ book }: { book: BookDocument }) {
           </a>
           <button className="flex items-center justify-center gap-[5px] font-body2 text-text-secondary bg-light-gray px-4 py-4 rounded-lg leading-none">
             상세보기
-            <img src={toggleArrowIcon} alt="토글" className="w-2 h-3.5" />
+            <img src={toggleArrowIcon} alt="토글" className="w-3 h-3 align-middle rotate-180" />
           </button>
         </div>
       </div>
