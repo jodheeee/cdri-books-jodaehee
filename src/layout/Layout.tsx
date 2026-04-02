@@ -5,7 +5,7 @@ export default function Layout() {
   return (
     <div className="min-w-270">
       <Header />
-      <main>
+      <main className="pb-25">
         <Outlet />
       </main>
     </div>
