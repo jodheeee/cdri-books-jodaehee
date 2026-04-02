@@ -7,8 +7,10 @@
   --color-light-gray: #f2f4f6;
   --color-white: #ffffff;
   --color-black: #222222;
-  --color-secondary: #6d7582;
-  --color-subtitle: #8d94a0;
+
+  --color-text-primary: #353c49;
+  --color-text-secondary: #6d7582;
+  --color-text-subtitle: #8d94a0;
 
   --font-title1: 700 24px/24px "Noto Sans KR", sans-serif;
   --font-title2: 700 22px/24px "Noto Sans KR", sans-serif;
