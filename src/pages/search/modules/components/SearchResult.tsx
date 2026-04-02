@@ -4,6 +4,7 @@ import { useIntersectionObserver } from "../../../../hooks/useIntersectionObserv
 import BookList from "../../../../components/BookList";
 import BookListSkeleton from "../../../../components/BookListSkeleton";
 import EmptyResult from "../../../../components/EmptyResult";
+import ScrollTopButton from "../../../../components/ScrollTopButton";
 
 interface SearchResultProps {
   query: string;
@@ -31,6 +32,7 @@ export default function SearchResult({ query, onCountChange }: SearchResultProps
       <BookList books={allBooks} />
       {isFetchingNextPage && <BookListSkeleton count={3} />}
       <div ref={bottomRef} className="h-1" />
+      <ScrollTopButton enabled={data.pages.length >= 3} />
     </div>
   ) : (
     <EmptyResult message="검색된 결과가 없습니다." />
