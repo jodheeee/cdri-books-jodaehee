@@ -1,19 +1,23 @@
 import "./App.css";
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./layout/Layout";
-import SearchPage from "./pages/search";
-import WishlistPage from "./pages/wishlist";
+
+const SearchPage = lazy(() => import("./pages/search"));
+const WishlistPage = lazy(() => import("./pages/wishlist"));
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/wishlist" element={<WishlistPage />} />
-          <Route path="*" element={<Navigate to="/search" replace />} />
-        </Route>
-      </Routes>
+      <Suspense>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/wishlist" element={<WishlistPage />} />
+            <Route path="*" element={<Navigate to="/search" replace />} />
+          </Route>
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }
