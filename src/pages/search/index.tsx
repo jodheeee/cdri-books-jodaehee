@@ -3,14 +3,17 @@ import searchIcon from "@/icons/search.svg";
 import BookListSkeleton from "@/components/BookList/Skeleton";
 import EmptyResult from "@/components/EmptyResult";
 import SearchHistory from "@/components/SearchHistory";
+import DetailSearchPopup from "@/components/DetailSearchPopup";
 import { useSearchHistoryStore } from "@/stores/useSearchHistoryStore";
 import SearchResult from "./modules/components/SearchResult";
 
 export default function SearchPage() {
   const [keyword, setKeyword] = useState("");
   const [query, setQuery] = useState("");
+  const [target, setTarget] = useState<string | undefined>();
   const [resultCount, setResultCount] = useState(0);
   const [showHistory, setShowHistory] = useState(false);
+  const [showDetail, setShowDetail] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const { add } = useSearchHistoryStore();
 
@@ -22,9 +25,20 @@ export default function SearchPage() {
     }
     setKeyword(searchKeyword);
     setQuery(searchKeyword);
+    setTarget(undefined);
     add(searchKeyword);
     setShowHistory(false);
     inputRef.current?.blur();
+  };
+
+  const handleDetailSearch = (searchTarget: string, searchKeyword: string) => {
+    if (searchKeyword !== query || searchTarget !== target) {
+      setResultCount(0);
+    }
+    setKeyword("");
+    setQuery(searchKeyword);
+    setTarget(searchTarget);
+    setShowDetail(false);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -46,7 +60,7 @@ export default function SearchPage() {
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
                 onKeyDown={handleKeyDown}
-                onFocus={() => setShowHistory(true)}
+                onFocus={() => { setShowHistory(true); setShowDetail(false); }}
                 onBlur={() => setTimeout(() => setShowHistory(false), 150)}
                 placeholder="검색어를 입력하세요"
                 className="font-body3 text-text-primary placeholder:text-text-subtitle bg-transparent outline-none w-full"
@@ -54,9 +68,20 @@ export default function SearchPage() {
             </div>
             {showHistory && <SearchHistory onSelect={handleSearch} />}
           </div>
-          <button className="font-body2 text-text-subtitle border border-text-subtitle rounded-lg p-2.5">
-            상세검색
-          </button>
+          <div className="relative">
+            <button
+              onClick={() => setShowDetail(!showDetail)}
+              className="font-body2 text-text-subtitle border border-text-subtitle rounded-lg p-2.5"
+            >
+              상세검색
+            </button>
+            {showDetail && (
+              <DetailSearchPopup
+                onSearch={handleDetailSearch}
+                onClose={() => setShowDetail(false)}
+              />
+            )}
+          </div>
         </div>
 
         <div className="flex items-center gap-4 mt-9">
@@ -68,7 +93,7 @@ export default function SearchPage() {
 
         {query ? (
           <Suspense fallback={<div className="mt-6"><BookListSkeleton /></div>}>
-            <SearchResult query={query} onCountChange={setResultCount} />
+            <SearchResult query={query} target={target} onCountChange={setResultCount} />
           </Suspense>
         ) : (
           <EmptyResult message="검색된 결과가 없습니다." />

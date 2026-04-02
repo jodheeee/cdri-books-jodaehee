@@ -8,12 +8,13 @@ import ScrollTopButton from "@/components/ScrollTopButton";
 
 interface SearchResultProps {
   query: string;
+  target?: string;
   onCountChange: (count: number) => void;
 }
 
-export default function SearchResult({ query, onCountChange }: SearchResultProps) {
+export default function SearchResult({ query, target, onCountChange }: SearchResultProps) {
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useBookSearch(query);
+    useBookSearch(query, target);
 
   const allBooks = data.pages.flatMap((page) => page.documents);
 
